@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CompanyCRUDController;
+use App\Http\Controllers\CustomAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,3 +31,7 @@ Route::group(['as' => 'post.', 'prefix' => 'post'], function () {
     Route::post("/edit/{company}",[CompanyCRUDController::class,'updatePost']);
     Route::get("/delete/{id}",[CompanyCRUDController::class,'deletePost'])->name('delete');
 });
+
+Route::get("login",[CustomAuthController::class,'login']);
+Route::get("registration",[CustomAuthController::class,'registration']);
+Route::post("registration-user",[CustomAuthController::class,'registrationUser'])->name('registration-user');
