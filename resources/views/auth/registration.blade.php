@@ -56,7 +56,10 @@
                             <span class="text-danger">@error('password') {{$message}} @enderror</span> 
                         </div>
                       </div>
-    
+                        <p class="small fw-bold mt-2 pt-1 mb-3" style="text-align: center;">Do You have an account? <a href="{{ route('login') }}"
+                          class="link-danger">Login</a>
+                        </p>
+
                       <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button type="submit" class="btn btn-warning btn-lg">Register</button>
                       </div>

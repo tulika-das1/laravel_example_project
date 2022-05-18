@@ -32,6 +32,9 @@ Route::group(['as' => 'post.', 'prefix' => 'post'], function () {
     Route::get("/delete/{id}",[CompanyCRUDController::class,'deletePost'])->name('delete');
 });
 
-Route::get("login",[CustomAuthController::class,'login']);
-Route::get("registration",[CustomAuthController::class,'registration']);
-Route::post("registration-user",[CustomAuthController::class,'registrationUser'])->name('registration-user');
+Route::get("/login",[CustomAuthController::class,'login'])->middleware('guest')->name('login');
+Route::get("/registration",[CustomAuthController::class,'registration'])->middleware('guest');
+Route::post("/registration-user",[CustomAuthController::class,'registrationUser'])->middleware('guest')->name('registration-user');
+Route::post("/login-user",[CustomAuthController::class,'loginUser'])->middleware('guest')->name('login-user');
+Route::get("/dashboard",[CustomAuthController::class,'dashboard'])->middleware('auth')->name('dashboard');
+Route::get("/logout",[CustomAuthController::class,'logout']);
