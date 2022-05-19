@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CompanyCRUDController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\BlogPostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,3 +39,7 @@ Route::post("/registration-user",[CustomAuthController::class,'registrationUser'
 Route::post("/login-user",[CustomAuthController::class,'loginUser'])->middleware('guest')->name('login-user');
 Route::get("/dashboard",[CustomAuthController::class,'dashboard'])->middleware('auth')->name('dashboard');
 Route::get("/logout",[CustomAuthController::class,'logout']);
+
+Route::get("/blog",[BlogPostController::class,'blogPost'])->middleware('auth')->name('blog');
+Route::post("/blog",[BlogPostController::class,'blogPostUser']);
+Route::get("/blog-post-page",[BlogPostController::class,'blogPostList'])->middleware('auth')->name('blog-post-page');

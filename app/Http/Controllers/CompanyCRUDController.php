@@ -8,7 +8,7 @@ use App\Models\Company;
 class CompanyCRUDController extends Controller
 {
     public function addPost(){
-            return view('add-post');
+        return view('add-post');
     }
 
     public function savePost(Request $request){
