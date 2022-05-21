@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <a style="float:right" href="{{route('blog')}}">Add Post</a>
+    <a style="float:right" href="{{ route('blog') }}">Add Post</a>
     <table>
         <tr>
             <th>Title</th>
@@ -32,8 +32,8 @@
             <td>{{ $blog->description }}</td>
             <td>{{ $blog->user->name }}</td>
             <td>
-                <a href="#">Edit</a> |
-                <a href="#">Delete</a>
+                <a href="{{ route('blog-edit', ['blog' => $blog->id]) }}">Edit</a> |
+                <a href="{{ route('blog-delete', ['blog' => $blog->id]) }}">Delete</a>
             </td>
         </tr>
         @endforeach

@@ -43,3 +43,6 @@ Route::get("/logout",[CustomAuthController::class,'logout']);
 Route::get("/blog",[BlogPostController::class,'blogPost'])->middleware('auth')->name('blog');
 Route::post("/blog",[BlogPostController::class,'blogPostUser']);
 Route::get("/blog-post-page",[BlogPostController::class,'blogPostList'])->middleware('auth')->name('blog-post-page');
+Route::get("/blog-edit/{blog}",[BlogPostController::class,'blogPostEdit'])->middleware('auth')->name('blog-edit');
+Route::post("/blog-edit/{blog}",[BlogPostController::class,'updatePost']);
+Route::get("/blog-delete/{blog}",[BlogPostController::class,'blogPostDelete'])->name('blog-delete');
