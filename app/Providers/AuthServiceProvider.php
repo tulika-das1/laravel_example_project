@@ -6,6 +6,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use App\Models\BlogPost;
 use App\Models\UserData;
+use App\Policies\BlogPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        BlogPost::class => BlogPolicy::class,
     ];
 
     /**
@@ -27,8 +29,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('update-post', function (UserData $user, BlogPost $blog) {
-            return $user->id === $blog->user_id;
-        });
+        // Gate::define('update-post', function (UserData $user, BlogPost $blog) {
+        //     return $user->id === $blog->user_id;
+        // });
+
     }
 }
