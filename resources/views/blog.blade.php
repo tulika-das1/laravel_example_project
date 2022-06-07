@@ -28,6 +28,13 @@
                                 <textarea type="text" name="description" class="form-control" rows="3"></textarea>
                             </div>
                             
+                            <div class="mb-3">
+                                @foreach($categories as $category)
+                                    <input type="checkbox" id="category" name="category[]" value="{{ $category->id }}">
+                                    <label for="category"> {{ $category->name }}</label><br>
+                                @endforeach
+                            </div>
+
                             <button type="submit" class="btn btn-success">SUBMIT</button>
                         </form>
                     </div>

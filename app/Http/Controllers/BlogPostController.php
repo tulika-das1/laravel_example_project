@@ -32,6 +32,7 @@ class BlogPostController extends Controller
             $blog->description = $request->description;
             $blog->user_id = Auth::id();
             $blog->save();
+            $blog->categories()->sync($request->categories);
             return redirect()->route('blog-post-page'); 
     }
 
@@ -56,7 +57,6 @@ class BlogPostController extends Controller
             return  $response->message();
         }
 
-
         $blog->update([
             'title' => $request->title,
             'description' => $request->description,
@@ -75,7 +75,7 @@ class BlogPostController extends Controller
             return $response->message();
         }
 
-        Gate::authorize('update', $blog);
+        // Gate::authorize('update', $blog);
 
         return view('blog-edit', ['blog' => $blog]);
 
@@ -96,4 +96,19 @@ class BlogPostController extends Controller
         $blog->delete();
         return redirect()->route('blog-post-page');
     }
+ 
+    // public function searchPost(Request $request){
+    //     $search = $request->input('search');
+    //     BlogPost::where('title','LIKE','%'.$search.'%')
+    //     ->orWhere('description','LIKE','%'.$search.'%')
+    //     ->get();
+    // }
+    
+    // public function store(Request $request)
+    // {
+    //     $input = $request->all();
+    //     Category::create($input);
+    //     return redirect()->route('categories.index');
+    // }
+    
 }

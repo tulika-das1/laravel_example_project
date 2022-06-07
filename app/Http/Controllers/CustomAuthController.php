@@ -29,6 +29,7 @@ class CustomAuthController extends Controller
             'name' => ['required'],
             'gmail' => ['required','email'],
             'password' => ['required'],
+            // 'datetime' => ['required','date','date_format:Y-m-d\TH:i:s'],
         ]);
 
         $user = new UserData();
@@ -79,4 +80,5 @@ class CustomAuthController extends Controller
      
         return redirect(route('login'));
     }
+
 }

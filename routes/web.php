@@ -5,6 +5,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CompanyCRUDController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\TestController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,3 +48,5 @@ Route::get("/blog-post-page",[BlogPostController::class,'blogPostList'])->middle
 Route::get("/blog-edit/{blog}",[BlogPostController::class,'blogPostEdit'])->middleware('auth')->name('blog-edit');
 Route::post("/blog-edit/{blog}",[BlogPostController::class,'updatePost']);
 Route::get("/blog-delete/{blog}",[BlogPostController::class,'blogPostDelete'])->name('blog-delete');
+
+Route::get('/test', TestController::class);
