@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyCRUDController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestController2;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,4 @@ Route::get("/blog-edit/{blog}",[BlogPostController::class,'blogPostEdit'])->midd
 Route::post("/blog-edit/{blog}",[BlogPostController::class,'updatePost']);
 Route::get("/blog-delete/{blog}",[BlogPostController::class,'blogPostDelete'])->name('blog-delete');
 
-Route::get('/test', TestController::class);
+Route::get('/test', TestController2::class);

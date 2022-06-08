@@ -224,12 +224,18 @@ class TestController extends Controller
 
     public function __invoke()
     {
-    //    $collections = collect([
-    //         'questions' => self::DATA['questions'],
-    //         'answers' => self::DATA['answers'],
-    //    ]);
+        $questions = collect(self::DATA['questions']);
+        $answers = collect(self::DATA['answers']);
 
+        $questions->map(function($question) use ($answers) {
+            $question = collect($question);
+            $answers = $answers->where('question_id', $question->get('id'))
+                ->map(fn($answer) => collect($answer)->only(['title']));
 
-
+            return [
+                'question' => $question->only(['title'])->toArray(),
+                'answers' => $answers->values()->toArray(),
+            ];
+        })->dd();
     }
 }
