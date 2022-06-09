@@ -220,6 +220,14 @@ class TestController2 extends Controller
 
     public function __invoke()
     {
-        //
+        $answer =collect([]);
+        $question_answer = collect(self::DATA)->map(function ($question_answer) {
+            return collect($question_answer['answers'])->map(function ($answer) {
+                return [
+                    'title' => $answer['title'],
+                ];
+            });
+        })->dd();
+   
     }
 }
