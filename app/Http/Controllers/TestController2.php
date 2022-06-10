@@ -218,16 +218,56 @@ class TestController2 extends Controller
         ],
     ];
 
-    public function __invoke()
+    // public function __invoke()
+    // {
+    //     $questions = collect();
+    //     $answers = collect();
+
+    //     $ques = collect(self::DATA)->map(function ($ques){
+    //         return $ques['question'];
+    //     });
+        
+
+    //     $anss = collect(self::DATA)->map(function ($anss) {
+    //         return $anss['answers'];
+    //     });
+        
+    //     foreach($anss as $answer) {
+    //         foreach($answer as $ans) { // O(n^2)
+    //             $answers->push($ans);
+    //         }
+    //     }
+    //     $question_answer = [
+    //         'questions' => $ques->all(),
+    //         'answers' => $answers->all(),
+    //     ];
+
+    //     dd($question_answer);
+    // } 
+    
+    public function __invoke() 
     {
-        $answer =collect([]);
-        $question_answer = collect(self::DATA)->map(function ($question_answer) {
-            return collect($question_answer['answers'])->map(function ($answer) {
-                return [
-                    'title' => $answer['title'],
-                ];
-            });
-        })->dd();
-   
+        $q_data = collect(self::DATA);
+        $quesion_numbs = collect()->range(1, $q_data->count());
+
+        $q_data = $q_data->map(function ($data, $index) use ($quesion_numbs) {
+            $id = $quesion_numbs->get($index);
+
+            // $data['qustion']['id'] = $id;
+            // $answers = collect($data['answers'])->map(fn ($an) => $an['question_id'] = $id);
+
+            data_set($data, 'question.id', $id);
+            data_set($data, 'answers.*.question_id', $id);
+
+            return $data;
+        });
+
+        $questions = $q_data->pluck('question')->all();
+        $answers = $q_data->pluck('answers')->flatten(1)->all();
+
+        $data = compact('questions', 'answers');
+
+        dd($data);
     }
 }
+
